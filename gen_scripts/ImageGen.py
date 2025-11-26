@@ -175,10 +175,10 @@ def ReturnDitheredImage(path, width=-1, height=-1, colour=False, colour_space=No
     #maxQError = 150
 
     # Dithering Algorithm:
-    for y in range(0, height - zeroOffset):
+    for y in range(0, len(resizeImg) - zeroOffset):
         if y % int(height/100) == 0:
             print(f"{round((y/height)*100)}% Dithering Completed                 ", end="\r")
-        for x in range(0, width - zeroOffset):
+        for x in range(0, len(resizeImg[0]) - zeroOffset):
             oldPixel = resizeImg[y][x]
             newPixel = ColourRound(resizeImg[y][x], colour_space)
             if not colour:
@@ -196,15 +196,15 @@ def ReturnDitheredImage(path, width=-1, height=-1, colour=False, colour_space=No
     if not colour:
         # round to binary
         threshold = 0.5
-        for y in range(0, height):
-            for x in range(0, width):
+        for y in range(0, len(resizeImg)):
+            for x in range(0, len(resizeImg[0])):
                 #threshold = (0.2+random.random()*0.8)
                 resizeImg[y][x] = 0 if resizeImg[y][x] > threshold else 1
                 if returnNoDitherToo:
                     resizeImgNoDither[y][x] = 0 if resizeImgNoDither[y][x] > threshold else 1
     else:
-        for y in range(0, height):
-            for x in range(0, width):
+        for y in range(0, len(resizeImg)):
+            for x in range(0, len(resizeImg[0])):
                 resizeImg[y][x] = ColourRound(resizeImg[y][x], colour_space=colour_space)
                 if returnNoDitherToo:
                     resizeImgNoDither[y][x] = ColourRound(resizeImgNoDither[y][x], colour_space=colour_space)
