@@ -1,3 +1,6 @@
+# Ignore virtual python environment
+.venv/
+
 # Vivado Project Files - Ignore generated and temporary files
 
 # Vivado log files
