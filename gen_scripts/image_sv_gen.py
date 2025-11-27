@@ -13,8 +13,8 @@ def rgb_to_12_hex(rgb):
     return four_bit_to_hex(rgb[0]>>4) + four_bit_to_hex(rgb[1]>>4) + four_bit_to_hex(rgb[2]>>4)
 
 path = "brent1.png"
-disp_width = 80 #160
-disp_height = 60 #120
+disp_width = 20 #160
+disp_height = 15 #120
 
 colour_space = []
 
@@ -40,7 +40,7 @@ for y in range(disp_height):
     image_sv.write("\t},")
 image_sv.write("};\n")
 
-image_sv.write("\n\tassign rgb_colour = array[v_count>>2][h_count>>2];\nendmodule")
+image_sv.write(f"\n\tassign rgb_colour = array[v_count>>{math.ceil(math.log2(640/disp_width))}][h_count>>{math.ceil(math.log2(480/disp_height))}];\nendmodule")
 image_sv.close()
 
 
