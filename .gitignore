@@ -22,7 +22,7 @@ vivado*.backup.*
 *.gen/
 
 # Synthesis and implementation results
-*.dcp
+#*.dcp
 *.bit
 *.ltx
 *.debug
