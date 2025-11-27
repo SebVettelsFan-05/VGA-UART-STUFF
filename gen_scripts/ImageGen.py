@@ -86,7 +86,7 @@ def ResizeImage(imgArr, width=-1, height=-1, colour=False, allowTranspose=False)
     widthFactor = width/imageWidth
     heightFactor = height/imageHeight
     for y in range(imageHeight):
-        if y % int(imageHeight/100) == 0:
+        if y % max(int(imageHeight/100),1) == 0:
             print(f"{round((y/imageHeight)*100)}% Downscaling completed                     ", end="\r")
         for x in range(imageWidth):
             smallX = min(round(x*(widthFactor)), width-1)
@@ -176,7 +176,7 @@ def ReturnDitheredImage(path, width=-1, height=-1, colour=False, colour_space=No
 
     # Dithering Algorithm:
     for y in range(0, len(resizeImg) - zeroOffset):
-        if y % int(height/100) == 0:
+        if y % max(int(height/100), 1) == 0:
             print(f"{round((y/height)*100)}% Dithering Completed                 ", end="\r")
         for x in range(0, len(resizeImg[0]) - zeroOffset):
             oldPixel = resizeImg[y][x]
