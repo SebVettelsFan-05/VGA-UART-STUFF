@@ -13,8 +13,8 @@ def rgb_to_12_hex(rgb):
     return four_bit_to_hex(rgb[0]>>4) + four_bit_to_hex(rgb[1]>>4) + four_bit_to_hex(rgb[2]>>4)
 
 path = "brent1.png"
-disp_width = 160
-disp_height = 120
+disp_width = 80 #160
+disp_height = 60 #120
 
 colour_space = []
 
