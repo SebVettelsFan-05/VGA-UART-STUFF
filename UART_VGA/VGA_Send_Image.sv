@@ -20,6 +20,9 @@ module vga_send_image
     input logic [9:0] v_count,
     input logic [9:0] h_count,
 
+    input logic [11:0] rgb_colour,
+
+
     output logic [3:0] RED,
     output logic [3:0] BLUE,
     output logic [3:0] GREEN
@@ -35,9 +38,9 @@ assign valid = (h_count < ACTIVE_HORI) && (v_count < ACTIVE_VERT);
 always_ff @(posedge clk) begin
     if(enable) begin
         if(valid) begin
-            RED <= 4'hF;
-            GREEN <= 4'hF;
-            BLUE <= 4'h0;
+            RED <= rgb_colour[11:8];
+            GREEN <= rgb_colour[7:4];
+            BLUE <= rgb_colour[3:0];
         end
         else begin
             RED <= 4'h0;

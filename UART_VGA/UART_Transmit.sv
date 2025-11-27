@@ -38,7 +38,7 @@ always_ff @(posedge clk) begin
     end
     s_SSEQUENCE: begin
         serial_out <= 0;
-        if(cnter == PERIOD) begin
+        if(cnter == PERIOD-1) begin
             current_state <= s_SHIFTTRANS;
             cnter <=0;
         end
@@ -49,7 +49,7 @@ always_ff @(posedge clk) begin
     s_SHIFTTRANS: begin
         serial_out <= shift_reg[0];
         if(index <= 7) begin
-            if(cnter == PERIOD) begin
+            if(cnter == PERIOD-1) begin
                 cnter <= 0;
                 index <= index + 1;
                 shift_reg[7] <= 0;
