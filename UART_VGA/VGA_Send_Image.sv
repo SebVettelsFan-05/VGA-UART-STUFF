@@ -28,8 +28,8 @@ module vga_send_image
     output logic [3:0] GREEN
 );
 
-localparam int hori_res = ACTIVE_HORI+FRONT_PORCH_HORI+SYNC_PULSE_HORI+BACK_PORCH_HORI;
-localparam int vert_res = ACTIVE_VERT+FRONT_PORCH_VERT+SYNC_PULSE_VERT+BACK_PORCH_VERT;
+parameter int hori_res = ACTIVE_HORI+FRONT_PORCH_HORI+SYNC_PULSE_HORI+BACK_PORCH_HORI;
+parameter int vert_res = ACTIVE_VERT+FRONT_PORCH_VERT+SYNC_PULSE_VERT+BACK_PORCH_VERT;
 
 logic valid;
 

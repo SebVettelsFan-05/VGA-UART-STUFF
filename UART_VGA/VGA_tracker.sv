@@ -23,8 +23,8 @@ module VGA_hori_vert_cnt
     output logic [9:0] vert_cnt
 );
 
-localparam int hori_res = ACTIVE_HORI+FRONT_PORCH_HORI+SYNC_PULSE_HORI+BACK_PORCH_HORI;
-localparam int vert_res = ACTIVE_VERT+FRONT_PORCH_VERT+SYNC_PULSE_VERT+BACK_PORCH_VERT;
+parameter int hori_res = ACTIVE_HORI+FRONT_PORCH_HORI+SYNC_PULSE_HORI+BACK_PORCH_HORI;
+parameter int vert_res = ACTIVE_VERT+FRONT_PORCH_VERT+SYNC_PULSE_VERT+BACK_PORCH_VERT;
 
 parameter int hori_tot_time = ACTIVE_HORI+FRONT_PORCH_HORI+BACK_PORCH_HORI;
 parameter int vert_tot_time = ACTIVE_VERT+FRONT_PORCH_VERT+BACK_PORCH_VERT;
