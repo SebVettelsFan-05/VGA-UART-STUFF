@@ -12,6 +12,14 @@ module top_level_vga_test(
 logic [9:0] v_count;
 logic [9:0] h_count;
 
+logic [11:0] out_colour;
+
+image_rom test3(
+    .v_count(v_count),
+    .h_count(h_count),
+    .rgb_colour(out_colour)
+);
+
 VGA_hori_vert_cnt test1 (
     .clk(clk),
     .reset(reset),
@@ -31,7 +39,8 @@ vga_send_image test2 (
     .h_count(h_count),
     .RED(vgaRed),
     .BLUE(vgaBlue),
-    .GREEN(vgaGreen)
+    .GREEN(vgaGreen),
+    .rgb_colour(out_colour)
 );
 
 

@@ -40,7 +40,7 @@ always_ff @(posedge clk) begin
         end
     end
     s_VERIFY: begin
-        if(cnter == HALF_PERIOD)begin
+        if(cnter == HALF_PERIOD-1)begin
             cnter <= 0;
             drdy <= 0;
             if(~serial_in) begin
@@ -56,7 +56,7 @@ always_ff @(posedge clk) begin
     end
 
     s_SAMPLE: begin
-        if(cnter == PERIOD) begin
+        if(cnter == PERIOD-1) begin
             cnter <= 0;
             drdy <= 0;
             if(index <= 7) begin
