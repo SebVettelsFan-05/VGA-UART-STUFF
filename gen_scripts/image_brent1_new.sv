@@ -1,0 +1,29 @@
+module image_rom (
+	input logic [9:0] v_count,
+	input logic [9:0] h_count,
+	output logic [11:0] rgb_colour
+);
+	logic [9:0] v_count_n;
+	logic [9:0] h_count_n;
+	assign v_count_n = v_count >> 5;
+	assign h_count_n = h_count >> 5;
+
+	logic [11:0] array[0:299] = '{
+		12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000,
+		12'h000, 12'h000, 12'h0FF, 12'hF00, 12'h000, 12'h0FF, 12'hF00, 12'h000, 12'h0FF, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'h000, 12'hFFF, 12'hFFF, 12'h000, 12'h000, 12'hFFF, 12'h000,
+		12'h000, 12'hFFF, 12'h000, 12'h00F, 12'hFF0, 12'h00F, 12'h000, 12'hFF0, 12'hF0F, 12'hF00, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h0FF, 12'hFFF, 12'hF00, 12'h0FF, 12'h0FF,
+		12'h000, 12'hFF0, 12'h00F, 12'hFF0, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFF0, 12'hF0F, 12'hFF0, 12'hFF0, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'h0FF, 12'h000,
+		12'h00F, 12'h000, 12'hFFF, 12'h00F, 12'h000, 12'h000, 12'hF00, 12'hFFF, 12'h000, 12'hFFF, 12'hF0F, 12'hFF0, 12'hF0F, 12'h000, 12'hF00, 12'h000, 12'h000, 12'h0F0, 12'hF0F, 12'hF0F,
+		12'hFF0, 12'hFFF, 12'hFF0, 12'h000, 12'hFFF, 12'hFFF, 12'hFF0, 12'hF0F, 12'hFF0, 12'h000, 12'hFFF, 12'h000, 12'hF00, 12'h0F0, 12'h000, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'hFFF,
+		12'h00F, 12'hFFF, 12'hFFF, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hF00, 12'h000, 12'h000, 12'hFF0, 12'hF0F, 12'h000, 12'h000, 12'h00F, 12'hF00, 12'h000, 12'h000, 12'hFFF, 12'hF0F,
+		12'hFF0, 12'h00F, 12'hFFF, 12'h000, 12'h000, 12'hF00, 12'h000, 12'h0FF, 12'h00F, 12'h000, 12'hFF0, 12'h00F, 12'h000, 12'hFF0, 12'h000, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'hFFF,
+		12'hFFF, 12'hFFF, 12'hFF0, 12'hFFF, 12'hFFF, 12'hFFF, 12'hFF0, 12'hFFF, 12'hFF0, 12'hF00, 12'hFFF, 12'hFFF, 12'h000, 12'hFF0, 12'hF0F, 12'h000, 12'hFFF, 12'h000, 12'hFFF, 12'hFFF,
+		12'hFFF, 12'hFFF, 12'hF00, 12'hF00, 12'hFFF, 12'hF00, 12'hFFF, 12'hF0F, 12'hF00, 12'hFF0, 12'hFFF, 12'hF0F, 12'h000, 12'h000, 12'hFF0, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF,
+		12'hFFF, 12'h0FF, 12'h0FF, 12'hF00, 12'hF00, 12'h000, 12'hFF0, 12'hFFF, 12'hF00, 12'hFFF, 12'h000, 12'hF00, 12'h000, 12'h000, 12'hF00, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF,
+		12'hFFF, 12'hFFF, 12'hFFF, 12'hFFF, 12'h000, 12'hFFF, 12'h000, 12'h000, 12'h00F, 12'hFFF, 12'hFF0, 12'hF00, 12'h0F0, 12'h000, 12'h00F, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF,
+		12'hF00, 12'hFFF, 12'hFFF, 12'h0FF, 12'hF00, 12'hF0F, 12'hFFF, 12'hF00, 12'h000, 12'hFFF, 12'hF0F, 12'h000, 12'h000, 12'h000, 12'hFF0, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF, 12'hFFF,
+		12'hFFF, 12'hFFF, 12'h000, 12'h000, 12'hFF0, 12'h000, 12'h000, 12'h0F0, 12'hFF0, 12'hFF0, 12'hFF0, 12'hF00, 12'h000, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF, 12'hFFF,
+		12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'h000, 12'hFFF, 12'hFFF, 12'hFFF, 12'hFFF, 12'hFFF};
+
+	assign rgb_colour = array[20*v_count_n+h_count_n];
+endmodule
