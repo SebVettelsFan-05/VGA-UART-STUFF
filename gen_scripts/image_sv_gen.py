@@ -18,9 +18,9 @@ disp_height = 120 #15 #120
 
 colour_space = []
 
-for r in [0, 255]:#range(0, 255, 16):
-    for g in [0, 255]:#range(0, 255, 16):
-        for b in [0, 255]:#range(0, 255, 16):
+for r in range(0, 255, 16):#[0, 255]:#range(0, 255, 16):
+    for g in range(0, 255, 16):#[0, 255]:#range(0, 255, 16):
+        for b in range(0, 255, 16):#[0, 255]:#range(0, 255, 16):
             colour_space.append([r, g, b])
 
 dithered_img, non_dithered_img = ImageGen.ReturnDitheredImage(path, width=disp_width, height=disp_height, colour=True, colour_space=colour_space, returnNoDitherToo=True)
